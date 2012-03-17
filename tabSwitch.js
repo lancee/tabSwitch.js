@@ -13,13 +13,13 @@
 
   "use strict"
 
-  $.tabSwitch = function(options) {
+  $.tabSwitch = function(options, scope) {
 
     // Initialization
     var init = function() {
       options = $.extend({}, $.tabSwitch.defaults, options);
-      var tabs = $(options.tabSelector),
-          page = $(options.tabPageSelector);
+      var tabs = scope ? $(scope).find(options.tabSelector) : $(options.tabSelector),
+          page = scope ? $(scope).find(options.tabPageSelector) : $(options.tabPageSelector);
 
       if (options.isIdMode) {
         page = page.each(function(i) {
@@ -65,9 +65,10 @@
   $.fn.tabSwitch = function(options, callback) {
     return this.each(function(i) {
       if( (typeof(options) ).match('object|undefined')) {
-        new $.tabSwitch(options);
-        if ( callback )
+        $.tabSwitch(options, this);
+        if ( callback ) {
           callback.call(this, i);
+        }
       }
     });
   };
