@@ -23,15 +23,15 @@
 
       if (options.isIdMode) {
         page = page.each(function(i) {
-          var id = $(page[i]).attr('id');
-          page[id] = page[i];
+          var id = $(this).attr('id');
+          page[id] = this;
         });
       }
 
       page.each(function(i) {
         $(this).data('tab-page', i);
-        if (!$(page[i]).hasClass('cur')) {
-          $(page[i]).addClass('invisible');
+        if (!$(this).hasClass('cur')) {
+          $(this).addClass('invisible');
         }
       });
       tabs.each(function(i) {
