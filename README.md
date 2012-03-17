@@ -1,1 +1,1 @@
-Light weight tab switch, jQuery plugin.
+Light weight tab switcher, jQuery plugin.
